@@ -1,9 +1,7 @@
 "use strict"
 async = require 'async'
 fs    = require 'fs'
-hljs  = require 'highlight.js'
 markdown_it = require 'markdown-it'
-url   = require 'url'
 
 module.exports = ( env, callback ) ->
 

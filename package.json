@@ -2,9 +2,10 @@
   "name": "wintersmith-markdown-it",
   "version": "0.0.2",
   "description": "Wintersmith plugin to perform markdown processing with Markdown-it",
+  "homepage": "https://github.com/dwaite/wintersmith-markdown.it",
   "main": "index.js",
   "scripts": {
-    "prepublish": "./node_modules/.bin/coffee -c -m lib/*.coffee",
+    "prepublish": "./node_modules/.bin/coffee -o lib/ -cm src/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -13,9 +14,15 @@
   },
   "keywords": [
     "wintersmith",
-    "markdown"
+    "markdown",
+    "markdown-it",
+    "plugin"
   ],
-  "author": "David Waite <david@alkaline-solutions.com>",
+  "author": {
+    "name": "David Waite",
+    "email": "david@alkaline-solutions.com",
+    "url": "https://alkaline.solutions/"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/dwaite/wintersmith-markdown-it/issues"
