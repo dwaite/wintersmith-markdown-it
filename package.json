@@ -1,10 +1,10 @@
 {
   "name": "wintersmith-markdown-it",
-  "version": "0.0.1",
-  "description": "Wintersmith plugin to replace markdown processing with Markdown-it",
+  "version": "0.0.2",
+  "description": "Wintersmith plugin to perform markdown processing with Markdown-it",
   "main": "index.js",
   "scripts": {
-    "prepublish": "./node_modules/.bin/coffee -c index.coffee",
+    "prepublish": "./node_modules/.bin/coffee -c -m lib/*.coffee",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
