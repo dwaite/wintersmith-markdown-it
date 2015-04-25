@@ -40,6 +40,5 @@
   },
   "peerDependencies": {
     "wintersmith": "^2.1.0"
-  },
-  "homepage": "https://github.com/dwaite/wintersmith-markdown-it"
+  }
 }
