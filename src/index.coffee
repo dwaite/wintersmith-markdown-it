@@ -16,6 +16,7 @@ module.exports = ( env, callback ) ->
       .use require 'markdown-it-footnote'
       .use require('./highlight'), classPrefix: ''
       .use require('./resolve_links')(this, base)
+      .use require('./resolve_images')(this, base)
 
       md.render @markdown
   
