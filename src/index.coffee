@@ -14,7 +14,9 @@ module.exports = ( env, callback ) ->
 
       md = markdown_it()
       .use require 'markdown-it-footnote'
-      .use require('./highlight'), classPrefix: ''
+      .use require('./highlight'), 
+        classPrefix: globalOptions?.classPrefix or "",
+        autoLanguage: globalOptions?.autoLanguage or false
       .use require('./resolve_links')(this, base)
 
       md.render @markdown
