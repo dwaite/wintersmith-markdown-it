@@ -9,14 +9,23 @@ module.exports = ( env, callback ) ->
     constructor: (@filepath, @metadata, @markdown) ->
 
     getHtml: ( base = env.config.baseUrl ) ->
-      globalOptions = env.config.markdownit
-      extensions = @metadata.markdown_it or globalOptions?.extensions or "all"
+      plugins = env.config['markdown-it'] or {}
+      for name, opts of @metadata['markdown-it'] or {}
+        plugins[name] = opts
 
       md = markdown_it()
-      .use require 'markdown-it-footnote'
-      .use require('./highlight'), classPrefix: ''
-      .use require('./resolve_links')(this, base)
-
+      for name, opts of plugins
+        env.logger.verbose("using #{name} plugin with opts #{JSON.stringify(opts)}")
+        for optName, optVal of opts
+          if optVal.match and optVal.match(/^function\s*\(/)
+            try
+              opts[optName] = eval("(#{optVal})")
+            catch err
+              delete opts[optName]
+              env.logger.error("error evaluating #{optName} option for the #{name} markdown-it plugin: #{err}")
+        md.use require(name), opts or {}
+      md.use require('./highlight'), classPrefix: ''
+      md.use require('./resolve_links')(this, base)
       md.render @markdown
   
   MarkdownItPage.fromFile = ( filepath, callback ) ->
