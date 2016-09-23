@@ -5,7 +5,7 @@
   "homepage": "https://github.com/dwaite/wintersmith-markdown.it",
   "main": "index.js",
   "scripts": {
-    "prepublish": "./node_modules/.bin/coffee -o lib/ -cm src/",
+    "prepublish": "not-in-install && coffee -o lib/ -cm src/ || in-install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -29,11 +29,11 @@
   },
 
   "dependencies": {
-    "wintersmith":  "^2.1.0",
     "markdown-it":  "^3.0.4",
     "markdown-it-footnote": "^0.1.0",
     "async":        ">=0.9.0",
-    "highlight.js": ">=8.4.0"
+    "highlight.js": ">=8.4.0",
+    "in-publish": "^2.0.0"
   },
   "devDependencies": {
     "coffee-script": "^1.9.0"
