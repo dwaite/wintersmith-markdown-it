@@ -18,6 +18,7 @@ module.exports = ( env, callback ) ->
         classPrefix: globalOptions?.classPrefix or "",
         autoLanguage: globalOptions?.autoLanguage or false
       .use require('./resolve_links')(this, base)
+      .use require('./resolve_images')(this, base)
 
       md.render @markdown
   
