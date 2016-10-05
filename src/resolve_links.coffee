@@ -3,9 +3,9 @@ url   = require 'url'
 
 module.exports = ( page, base ) ->
   (md) ->
-    default_link_open = md.renderer.rules.link_open
+    default_html_inline = md.renderer.rules.html_inline
 
-    md.renderer.rules.link_open = (tokens, idx, options, env) =>
+    md.renderer.rules.html_inline = (tokens, idx, options, env) =>
       baseUri = page.getLocation base
   
       ### Resolve *uri* relative to *content*, resolves using
@@ -31,4 +31,4 @@ module.exports = ( page, base ) ->
           if nav?.getUrl?
             href = nav.getUrl() + [uriParts.hash]
           tokens[idx].href = url.resolve baseUri, href
-      default_link_open tokens, idx, options, env
+      default_html_inline tokens, idx, options, env
