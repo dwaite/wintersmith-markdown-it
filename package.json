@@ -29,15 +29,15 @@
   },
 
   "dependencies": {
-    "markdown-it":  "*",
-    "async":        "*",
-    "highlight.js": "*",
-    "in-publish":   "*",
+    "markdown-it":  "^8.0.0",
+    "async":        "^2.0.1",
+    "highlight.js": "^9.7.0",
+    "in-publish":   "^2.0.0"
   },
   "devDependencies": {
-    "coffee-script": "*"
+    "coffee-script": "^1.11.1"
   },
   "peerDependencies": {
-    "wintersmith": "*"
+    "wintersmith": "^2.3.3"
   }
 }
