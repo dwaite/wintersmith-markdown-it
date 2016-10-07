@@ -29,16 +29,14 @@
   },
 
   "dependencies": {
-    "wintersmith":  "^2.1.0",
-    "markdown-it":  "^4.4.0",
-    "markdown-it-footnote": "^1.0.0",
-    "async":        ">=0.9.0",
-    "highlight.js": ">=8.4.0"
+    "markdown-it":  "*",
+    "async":        "*",
+    "highlight.js": "*"
   },
   "devDependencies": {
-    "coffee-script": "^1.9.0"
+    "coffee-script": "*"
   },
   "peerDependencies": {
-    "wintersmith": "^2.1.0"
+    "wintersmith": "*"
   }
 }

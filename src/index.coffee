@@ -9,17 +9,30 @@ module.exports = ( env, callback ) ->
     constructor: (@filepath, @metadata, @markdown) ->
 
     getHtml: ( base = env.config.baseUrl ) ->
-      globalOptions = env.config.markdownit
-      extensions = @metadata.markdown_it or globalOptions?.extensions or "all"
+      plugins = env.config['markdown-it'] or {}
+      for name, opts of @metadata['markdown-it'] or {}
+        plugins[name] = opts
 
       md = markdown_it()
-      .use require 'markdown-it-footnote'
-      .use require('./highlight'), 
-        classPrefix: globalOptions?.classPrefix or "",
-        autoLanguage: globalOptions?.autoLanguage or false
-      .use require('./resolve_links')(this, base)
-      .use require('./resolve_images')(this, base)
-
+      highlight_settings = {}
+      for name, opts of plugins
+        if name == "highlight-settings"
+          highlight_settings = opts
+        else
+          env.logger.verbose("using #{name} plugin with opts #{JSON.stringify(opts)}")
+          for optName, optVal of opts
+            if optVal.match and optVal.match(/^function\s*\(/)
+              try
+                opts[optName] = eval("(#{optVal})")
+              catch err
+                delete opts[optName]
+                env.logger.error("error evaluating #{optName} option for the #{name} markdown-it plugin: #{err}")
+          md.use require(name), opts or {}
+      md.use require('./highlight'), 
+        classPrefix: highlight_settings["class-prefix"] or '',
+        autoLanguage: highlight_settings["auto-language"] or false
+      md.use require('./resolve_links')(this, base)
+      md.use require('./resolve_images')(this, base)
       md.render @markdown
   
   MarkdownItPage.fromFile = ( filepath, callback ) ->
