@@ -13,12 +13,13 @@ module.exports = ( env, callback ) ->
       for name, opts of @metadata['markdown-it'] or {}
         plugins[name] = opts
 
-      md = markdown_it()
+      settings = plugins['settings'] or undefined
+      md = markdown_it(settings)
       highlight_settings = {}
       for name, opts of plugins
         if name == "highlight-settings"
           highlight_settings = opts
-        else
+        else if name != "settings"
           env.logger.verbose("using #{name} plugin with opts #{JSON.stringify(opts)}")
           for optName, optVal of opts
             if optVal.match and optVal.match(/^function\s*\(/)

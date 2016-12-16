@@ -16,6 +16,33 @@ Add this plugin to your Wintersmith config.json file.
 }
 ```
 
+## Presets and Options
+
+Markdown-It can be initialized with various [presets and options](https://github.com/markdown-it/markdown-it#init-with-presets-and-options).
+
+Here is an example enabling typographer and Linkify-It:
+
+```json
+{
+  "markdown-it": {
+    "settings": {
+      "linkify": true,
+      "typographer": true
+    }
+  }
+}
+```
+
+Here is an example configuring the parser to strict CommonMark mode:
+
+```json
+{
+  "markdown-it": {
+    "settings": "commonmark"
+  }
+}
+```
+
 ## Highlight settings
 
 Markdown-It uses [highlight.js](https://highlightjs.org) for syntax highlighting. Two options are exposed:
