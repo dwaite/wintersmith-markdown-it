@@ -1,6 +1,6 @@
 {
   "name": "wintersmith-markdown-it",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Wintersmith plugin to perform markdown processing with Markdown-it",
   "homepage": "https://github.com/dwaite/wintersmith-markdown.it",
   "main": "index.js",
