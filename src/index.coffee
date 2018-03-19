@@ -29,13 +29,12 @@ module.exports = ( env, callback ) ->
                 delete opts[optName]
                 env.logger.error("error evaluating #{optName} option for the #{name} markdown-it plugin: #{err}")
           md.use require(name), opts or {}
-      md.use require('./highlight'), 
+      md.use require('./highlight'),
         classPrefix: highlight_settings["class-prefix"] or '',
         autoLanguage: highlight_settings["auto-language"] or false
-      md.use require('./resolve_links')(this, base)
-      md.use require('./resolve_images')(this, base)
+      md.use require('./resolve_anylink')(this, base)
       md.render @markdown
-  
+
   MarkdownItPage.fromFile = ( filepath, callback ) ->
     async.waterfall [
       (callback) ->
